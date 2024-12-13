@@ -1,6 +1,5 @@
 # numpy is not used in the implementation, only for tests
 import numpy as np
-import plotly.express as px
 
 
 class WindowSizeException(Exception):
@@ -37,10 +36,6 @@ def ma(nums, k):
 
 
 def tests():
-    def plot(prices, mine, ref):
-        data = {"price": prices, "sma": mine, "reference": ref}
-        px.line(data).show()
-
     def property_test(runs=500):
         def ma_naive(nums, k):
             """reference implementation for random property testing"""
@@ -95,7 +90,6 @@ def tests():
         np.testing.assert_almost_equal(res, shouldbe)
     except AssertionError:
         print(f"failed {ns}, {k}:")
-        plot(ns, res, shouldbe)
         raise
 
 
